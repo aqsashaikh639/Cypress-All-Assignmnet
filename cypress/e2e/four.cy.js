@@ -2,8 +2,7 @@ import '@4tw/cypress-drag-drop'
 describe("Fourth Assignment", () => {
     it("Drag the track in a playlist and verify", () => {
         //visit Playlists Tool
-        cy.visit("https://playlists2.radioedit.ihrint.com/playlists")
-        //Close draft playlists if available
+        cy.visit("/")        //Close draft playlists if available
         cy.get('.ant-alert-close-icon').then($btn => {
             if ($btn.is(':visible')) {
                 cy.wrap($btn).click()

@@ -2,11 +2,10 @@ const { defineConfig } = require("cypress");
 
 module.exports = defineConfig({
   e2e: {
-    setupNodeEvents(on, config) {
-      
-      // implement node event listeners here
-         pageLoadTimeout: 360000 // 2 minutes
-   
+     baseUrl: "https://playlists2.radioedit.ihrint.com/playlists",
+     pageLoadTimeout: 360000, // 2 minutes
+     setupNodeEvents(on, config) {
+            // implement node event listeners here
         },
   },
 });

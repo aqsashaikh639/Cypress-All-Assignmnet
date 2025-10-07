@@ -1,22 +1,49 @@
-describe("Clone a Playlists", () => {
-    it("Clone a Playlists and Verify", () => {
-        //visit Playlists Tool
-        cy.visit("https://playlists2.radioedit.ihrint.com/playlists", { timeout: 900000 })
-        //Close draft playlists if available
-        cy.get('body').then($body => {
-            const btn = $body.find('.ant-alert-close-icon')
-            if (btn.length > 0) {
-                cy.wrap(btn).click()
-            }
-        })
-        //open a Test Playlists
-        cy.get('[type="text"]').type("Testing Track")
-        cy.contains('Testing Track').should('be.visible').click({ force: true })
-        //click on action and then clone
-        cy.contains('Actions').should('be.visible').click()
-        cy.contains('Clone').should('be.visible').click()
-        //verify that copy get created by verifying it include copy word in title box
+describe("Clone a Playlist", () => {
+    it("Clone a Playlist and Verify Multiple Details", () => {
+        cy.viewport(1920, 1080)
+        cy.visit("/")
 
-        cy.get('[formcontrolname="title"]').should('include.value', '[Copy]')
+        // Open a Test Playlist
+        cy.get('[type="text"]').type("Testing Track")
+        cy.get('a.clickable').filter((index, e1) => e1.innerText.trim() === "Testing Track").click({ force: true })
+
+        // Store multiple playlist details in one object
+        cy.then(() => {
+            const playlistData = {}
+
+            // Grab multiple fields
+            cy.get('[placeholder="Title"]').invoke('val').then(val => {
+                playlistData.title = val
+            })
+
+            cy.get('[placeholder="Description"]').invoke('val').then(val => {
+                playlistData.description = val
+            })
+
+            cy.get('[formcontrolname="author"]').invoke('val').then(val => {
+                playlistData.author = val
+            })
+
+            // You can add more fields similarly (e.g., tags, duration, etc.)
+
+            // Once all are fetched, clone and verify
+            cy.then(() => {
+                cy.log('Original Playlist Data:', JSON.stringify(playlistData))
+
+                // Click on Action → Clone
+                cy.get('div.ml-auto button.ant-dropdown-trigger').click()
+                cy.contains('li.ant-dropdown-menu-item', 'Clone').click({ force: true })
+
+                // Verify cloned playlist details
+                cy.get('[formcontrolname="title"]')
+                    .should('have.value', `[Copy] ${playlistData.title}`)
+
+                cy.get('[placeholder="Description"]')
+                    .should('have.value', playlistData.description)
+
+                cy.get('[formcontrolname="author"]')
+                    .should('have.value', playlistData.author)
+            })
+        })
     })
 })

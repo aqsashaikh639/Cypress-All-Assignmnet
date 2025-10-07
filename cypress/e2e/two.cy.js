@@ -1,7 +1,9 @@
 describe("Dynamic Playlist – Fetch Track ID", () => {
   it("should select a dynamic playlist and extract the Track ID", () => {
     // Visit the Music Tool and verify landing page
-    cy.visit("https://playlists2.radioedit.ihrint.com/", { timeout: 90000 })
+    cy.visit("/")
+
+    //Verify landing page
     cy.get('.app-name').should('have.text', 'Playlists')
 
     // Open filter section and select 'Dynamic' playlists

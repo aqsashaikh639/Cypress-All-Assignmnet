@@ -19,7 +19,7 @@ beforeEach(() => {
   // Set the cookie before every test
   cy.setCookie(
     'access_token',
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGkiOiJ1c2VyL3N5c3RlbS9zeXN0ZW0iLCJzdWIiOiJ1c2VyL2xkYXAvMTEzNDA2MyIsInNjbyI6IiIsInNsdCI6Ik9pM2RGZSIsImV4cCI6MTc1ODAyOTgxNywiZXhwaCI6MTc1ODQ0ODMwOH0.0NSPW86HLi05-p47Dex544CPeTtYTdOhiuCAfPyXs4Y',
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGkiOiJ1c2VyL3N5c3RlbS9zeXN0ZW0iLCJzdWIiOiJ1c2VyL2xkYXAvMTEzNDA2MyIsInNjbyI6IiIsInNsdCI6ImtjbnVsUiIsImV4cCI6MTc1OTkyMDkzOSwiZXhwaCI6MTc2MDI2NzU0MX0.FeuOrZMJKh3CKHuIcVWDgX0V-4qcIX7sDXIFLV2YUyw',
     {domain: '.radioedit.ihrint.com'}
 );
 });
