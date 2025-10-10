@@ -1,8 +1,6 @@
 describe("Dynamic Playlist – Fetch Track ID", () => {
     it("Create a swap and delete it", () => {
-    // Visit the Playlists Tool
-    cy.visit("/")
-    
+      
     // Navigate to Swaps
     cy.contains('Swaps').click()
     cy.contains('New Swap').click()

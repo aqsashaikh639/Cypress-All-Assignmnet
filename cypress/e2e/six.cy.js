@@ -1,9 +1,7 @@
 describe("Verify All Elements on Playlists list Page", () => {
     it("Visit Playlists List Page and Verify all elements", () => {
-        cy.viewport(1920, 1080);
-        
-        //visit the playlists tool and Verify landing Page
-        cy.visit("/")        
+        cy.viewport(1920, 1080)
+        //visit Playlists Tool       
         cy.get('.app-name').should('have.text', 'Playlists')
 
         //verify New Playlists button is visible
@@ -28,7 +26,6 @@ describe("Verify All Elements on Playlists list Page", () => {
         //Click on collapse icon and verify the text present on left panel
         cy.get(':nth-child(4) > .ant-menu-item > .ant-menu-title-content > a').click()
         cy.wait(2000)
-        cy.contains('Shaikh, Aksa').should('be.visible')
         cy.contains('Logout').should('be.visible')
         cy.contains('Help').should('be.visible')
         cy.contains('Language').should('be.visible')

@@ -26,18 +26,25 @@ import '@4tw/cypress-drag-drop'
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 //  import 'cypress-drag-drop';
 
-Cypress.Commands.add('fillPlaylistForm', (editor, title, description, author) => {
-  cy.get('[formcontrolname="editors"]').should('be.visible').type(editor)
-  cy.get('.ant-select-item').contains(editor).should('be.visible').click()
-  cy.get('#title').type(title)
-  cy.get("#description").type(description)
-  cy.get('#author').type(author)
-})
-
 Cypress.Commands.add('revertbutton', () => {
     cy.get('[data-name="revert"]').then((btn) => {
       if (btn.is(':enabled')) {
         cy.wrap(btn).click()
       }
     })
+})
+Cypress.Commands.add("accesstoken", () => {
+  const refreshToken = "9QtrSCl6KI"
+  cy.request({
+    method: "POST",
+    url: `https://auth.radioedit.ihrint.com/token?grant_type=refresh_token&refresh_token=${refreshToken}`,
+  }).then((response) => {
+    const accessToken = response.body.access_token
+    // Set Authentication cookies
+    cy.setCookie("access_token_secure", accessToken, 
+      {
+      domain: ".radioedit.ihrint.com",
+    })
+  })
+  cy.visit("/")
 })

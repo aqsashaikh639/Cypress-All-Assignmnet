@@ -1,8 +1,6 @@
 describe("Clone a Playlist", () => {
     it("Clone a Playlist and Verify Multiple Details", () => {
         cy.viewport(1920, 1080)
-        cy.visit("/")
-
         // Open a Test Playlist
         cy.get('[type="text"]').type("Testing Track")
         cy.get('a.clickable').filter((index, e1) => e1.innerText.trim() === "Testing Track").click({ force: true })
